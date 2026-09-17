@@ -75,3 +75,7 @@ The learner never receives hidden rules, seeds, oracle paths, bucket labels, or 
 ## What this is not
 
 No transfer study, changing-rule study, dashboard, or remote publication. Earlier diagnostics (probe choice, first-TOGGLE re-probe, A vs B complete-target) remain development history in `docs/`.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
