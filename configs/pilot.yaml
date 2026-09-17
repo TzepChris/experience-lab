@@ -1,0 +1,19 @@
+experiment: pilot
+layout: tiny_two_switch
+rules:
+  - x0_and_x1
+  - x0_xor_x1
+  - x0
+seeds: [1, 2, 3]
+episodes_per_run: 2
+max_episode_steps: 256
+max_wall_seconds: 120
+planner_expansion_cap: 10000
+methods:
+  - active_retained
+  - active_reset
+  - systematic_retained
+  - oracle
+output: results/pilot
+render: false
+log_every_step: true

@@ -1,0 +1,31 @@
+experiment: reprobe_closed_door
+# Frozen 2026-09-17 before A vs B rankings. Separate from configs/probe_choice.yaml.
+# Do not retune maps or this schedule after inspecting costs.
+layouts:
+  - tiny_two_switch
+  - probe_spur
+  - probe_spur_mirror
+rules:
+  - x0
+  - x1
+  - x0_and_x1
+  - x0_or_x1
+  - x0_xor_x1
+switch_permutations:
+  - [0, 1]
+  - [1, 0]
+seeds: [1, 2, 3]
+episodes_per_run: 10
+max_episode_steps: 256
+max_wall_seconds: 120
+planner_expansion_cap: 10000
+methods:
+  - active_retained
+  - active_reprobe_retained
+  - oracle
+output: results/reprobe_closed_door
+render: false
+log_every_step: true
+matrix_frozen: true
+audit_random_informative: true
+prefixes: [1, 2, 5, 10]

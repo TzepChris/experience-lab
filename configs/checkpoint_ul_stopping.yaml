@@ -1,0 +1,32 @@
+experiment: checkpoint_ul_stopping
+# Same frozen matrix as configs/checkpoint_complete_probe.yaml.
+# Do not edit configs/probe_choice.yaml, configs/reprobe_closed_door.yaml,
+# or configs/checkpoint_complete_probe.yaml.
+# Method C is a hand-designed U vs L stopping rule, not a learned policy.
+layouts:
+  - tiny_two_switch
+  - probe_spur
+  - probe_spur_mirror
+rules:
+  - x0
+  - x1
+  - x0_and_x1
+  - x0_or_x1
+  - x0_xor_x1
+switch_permutations:
+  - [0, 1]
+  - [1, 0]
+seeds: [1, 2, 3]
+source_methods:
+  - systematic_retained
+  - active_retained
+later_episodes: 10
+max_episode_steps: 256
+max_wall_seconds: 120
+planner_expansion_cap: 10000
+prefixes: [1, 2, 5, 10]
+include_ul_stopping: true
+output: results/checkpoint_ul_stopping
+render: false
+log_every_step: false
+matrix_frozen: true

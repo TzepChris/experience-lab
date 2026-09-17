@@ -1,0 +1,54 @@
+experiment: checkpoint_geometry_holdout
+# Frozen 2026-09-18 before A/B/C rankings on these maps.
+# Geometry seeds 1-20 and generation rules: configs/geometry_holdout_maps.yaml
+# and src/experience_lab/geometry.py. Acceptance is oracle solvability only.
+# Old development matrix remains configs/checkpoint_ul_stopping.yaml.
+# Do not edit configs/probe_choice.yaml, configs/reprobe_closed_door.yaml,
+# or configs/checkpoint_complete_probe.yaml.
+# Method C is a hand-designed U vs L stopping rule, not a learned policy.
+layouts:
+  - holdout_01
+  - holdout_02
+  - holdout_03
+  - holdout_04
+  - holdout_05
+  - holdout_06
+  - holdout_07
+  - holdout_08
+  - holdout_09
+  - holdout_10
+  - holdout_11
+  - holdout_12
+  - holdout_13
+  - holdout_14
+  - holdout_15
+  - holdout_16
+  - holdout_17
+  - holdout_18
+  - holdout_19
+  - holdout_20
+rules:
+  - x0
+  - x1
+  - x0_and_x1
+  - x0_or_x1
+  - x0_xor_x1
+switch_permutations:
+  - [0, 1]
+  - [1, 0]
+seeds: [1]
+source_methods:
+  - systematic_retained
+  - active_retained
+later_episodes: 10
+max_episode_steps: 256
+max_wall_seconds: 120
+planner_expansion_cap: 10000
+prefixes: [1, 2, 5, 10]
+include_ul_stopping: true
+output: results/checkpoint_geometry_holdout
+render: false
+log_every_step: false
+matrix_frozen: true
+sampling_unit: geometry_layout
+agent_seed_note: "seeds: [1] is agent RNG; geometry seeds are the 20 layouts"

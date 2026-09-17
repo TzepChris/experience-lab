@@ -1,0 +1,30 @@
+experiment: probe_choice
+# Frozen 2026-09-17 before method rankings. Do not retune maps after seeing results.
+layouts:
+  - tiny_two_switch
+  - probe_spur
+  - probe_spur_mirror
+rules:
+  - x0_and_x1
+  - x0_xor_x1
+  - x0
+switch_permutations:
+  - [0, 1]
+  - [1, 0]
+seeds: [1, 2, 3]
+episodes_per_run: 2
+max_episode_steps: 256
+max_wall_seconds: 120
+planner_expansion_cap: 10000
+methods:
+  - active_retained
+  - active_reset
+  - systematic_retained
+  - systematic_reset
+  - random_informative_retained
+  - random_informative_reset
+  - oracle
+output: results/probe_choice
+render: false
+log_every_step: true
+matrix_frozen: true

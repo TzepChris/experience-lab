@@ -1,0 +1,14 @@
+experiment: smoke
+layout: tiny_two_switch
+rules:
+  - x0_and_x1
+seeds: [1]
+episodes_per_run: 1
+max_episode_steps: 256
+max_wall_seconds: 30
+planner_expansion_cap: 10000
+methods:
+  - active_retained
+output: results/demo
+render: true
+log_every_step: true

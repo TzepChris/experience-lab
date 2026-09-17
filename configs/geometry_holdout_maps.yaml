@@ -1,0 +1,782 @@
+generator_version: 1
+seeds:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+control_widths:
+- 4
+- 5
+- 6
+- 7
+- 8
+control_heights:
+- 2
+- 3
+- 4
+goal_lengths:
+- 2
+- 3
+- 4
+- 5
+spur_lengths:
+- 0
+- 1
+- 2
+- 3
+- 4
+max_draw_attempts: 400
+acceptance: oracle solvability for initially closed two-switch rules; no method ranking
+maps:
+- name: holdout_01
+  geometry_seed: 1
+  ascii_lines:
+  - '#######'
+  - '#.....#'
+  - '#.....#'
+  - '#..1.S#'
+  - '#0....#'
+  - '####D##'
+  - '####.##'
+  - '####.##'
+  - '####.##'
+  - '####G##'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 4
+    spur_len: 0
+    spur_col: 1
+    goal_len: 4
+    door_col: 4
+    start:
+    - 3
+    - 5
+    switch_0:
+    - 4
+    - 1
+    switch_1:
+    - 3
+    - 3
+    mirror: false
+    geometry_seed: 1
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 11
+- name: holdout_02
+  geometry_seed: 2
+  ascii_lines:
+  - '######'
+  - '#.1..#'
+  - '#S..0#'
+  - '###D##'
+  - '###.##'
+  - '###.##'
+  - '###.##'
+  - '###G##'
+  - '######'
+  params:
+    control_width: 4
+    control_height: 2
+    spur_len: 0
+    spur_col: 1
+    goal_len: 4
+    door_col: 3
+    start:
+    - 2
+    - 1
+    switch_0:
+    - 2
+    - 4
+    switch_1:
+    - 1
+    - 2
+    mirror: false
+    geometry_seed: 2
+    attempt: 1
+    generator_version: 1
+  width: 6
+  height: 9
+- name: holdout_03
+  geometry_seed: 3
+  ascii_lines:
+  - '#######'
+  - '#S#####'
+  - '#.#####'
+  - '#.#####'
+  - '#.#####'
+  - '#..1..#'
+  - '#.....#'
+  - '#.....#'
+  - '#.0...#'
+  - '##D####'
+  - '##.####'
+  - '##.####'
+  - '##G####'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 4
+    spur_len: 4
+    spur_col: 5
+    goal_len: 3
+    door_col: 4
+    start:
+    - 1
+    - 5
+    switch_0:
+    - 8
+    - 4
+    switch_1:
+    - 5
+    - 3
+    mirror: true
+    geometry_seed: 3
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 14
+- name: holdout_04
+  geometry_seed: 4
+  ascii_lines:
+  - '#######'
+  - '#...S1#'
+  - '#.....#'
+  - '#0....#'
+  - '####D##'
+  - '####.##'
+  - '####.##'
+  - '####.##'
+  - '####.##'
+  - '####G##'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 3
+    spur_len: 0
+    spur_col: 1
+    goal_len: 5
+    door_col: 2
+    start:
+    - 1
+    - 2
+    switch_0:
+    - 3
+    - 5
+    switch_1:
+    - 1
+    - 1
+    mirror: true
+    geometry_seed: 4
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 11
+- name: holdout_05
+  geometry_seed: 5
+  ascii_lines:
+  - '##########'
+  - '#####.####'
+  - '#####.####'
+  - '#..S.0...#'
+  - '#....1...#'
+  - '#........#'
+  - '########D#'
+  - '########.#'
+  - '########G#'
+  - '##########'
+  params:
+    control_width: 8
+    control_height: 3
+    spur_len: 2
+    spur_col: 4
+    goal_len: 2
+    door_col: 1
+    start:
+    - 3
+    - 6
+    switch_0:
+    - 3
+    - 4
+    switch_1:
+    - 4
+    - 4
+    mirror: true
+    geometry_seed: 5
+    attempt: 1
+    generator_version: 1
+  width: 10
+  height: 10
+- name: holdout_06
+  geometry_seed: 6
+  ascii_lines:
+  - '##########'
+  - '#.########'
+  - '#.########'
+  - '#S########'
+  - '#........#'
+  - '#...1...0#'
+  - '###D######'
+  - '###.######'
+  - '###.######'
+  - '###.######'
+  - '###G######'
+  - '##########'
+  params:
+    control_width: 8
+    control_height: 2
+    spur_len: 3
+    spur_col: 1
+    goal_len: 4
+    door_col: 3
+    start:
+    - 3
+    - 1
+    switch_0:
+    - 5
+    - 8
+    switch_1:
+    - 5
+    - 4
+    mirror: false
+    geometry_seed: 6
+    attempt: 1
+    generator_version: 1
+  width: 10
+  height: 12
+- name: holdout_07
+  geometry_seed: 7
+  ascii_lines:
+  - '########'
+  - '#####.##'
+  - '#####.##'
+  - '#####.##'
+  - '#1....S#'
+  - '#...0..#'
+  - '#D######'
+  - '#.######'
+  - '#G######'
+  - '########'
+  params:
+    control_width: 6
+    control_height: 2
+    spur_len: 3
+    spur_col: 5
+    goal_len: 2
+    door_col: 1
+    start:
+    - 4
+    - 6
+    switch_0:
+    - 5
+    - 4
+    switch_1:
+    - 4
+    - 1
+    mirror: false
+    geometry_seed: 7
+    attempt: 1
+    generator_version: 1
+  width: 8
+  height: 10
+- name: holdout_08
+  geometry_seed: 8
+  ascii_lines:
+  - '#######'
+  - '#.#####'
+  - '#.#####'
+  - '#.#####'
+  - '#....S#'
+  - '#.10..#'
+  - '#.....#'
+  - '#D#####'
+  - '#.#####'
+  - '#.#####'
+  - '#G#####'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 3
+    spur_len: 3
+    spur_col: 1
+    goal_len: 3
+    door_col: 1
+    start:
+    - 4
+    - 5
+    switch_0:
+    - 5
+    - 3
+    switch_1:
+    - 5
+    - 2
+    mirror: false
+    geometry_seed: 8
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 12
+- name: holdout_09
+  geometry_seed: 9
+  ascii_lines:
+  - '#########'
+  - '##.######'
+  - '##.######'
+  - '#0......#'
+  - '#...1...#'
+  - '#.......#'
+  - '#S......#'
+  - '#######D#'
+  - '#######.#'
+  - '#######.#'
+  - '#######.#'
+  - '#######G#'
+  - '#########'
+  params:
+    control_width: 7
+    control_height: 4
+    spur_len: 2
+    spur_col: 2
+    goal_len: 4
+    door_col: 7
+    start:
+    - 6
+    - 1
+    switch_0:
+    - 3
+    - 1
+    switch_1:
+    - 4
+    - 4
+    mirror: false
+    geometry_seed: 9
+    attempt: 1
+    generator_version: 1
+  width: 9
+  height: 13
+- name: holdout_10
+  geometry_seed: 10
+  ascii_lines:
+  - '##########'
+  - '####.#####'
+  - '####.#####'
+  - '####.#####'
+  - '#.....1..#'
+  - '#0......S#'
+  - '########D#'
+  - '########.#'
+  - '########.#'
+  - '########.#'
+  - '########.#'
+  - '########G#'
+  - '##########'
+  params:
+    control_width: 8
+    control_height: 2
+    spur_len: 3
+    spur_col: 4
+    goal_len: 5
+    door_col: 8
+    start:
+    - 5
+    - 8
+    switch_0:
+    - 5
+    - 1
+    switch_1:
+    - 4
+    - 6
+    mirror: false
+    geometry_seed: 10
+    attempt: 1
+    generator_version: 1
+  width: 10
+  height: 13
+- name: holdout_11
+  geometry_seed: 11
+  ascii_lines:
+  - '#########'
+  - '##.######'
+  - '##.######'
+  - '##.######'
+  - '#.......#'
+  - '#.......#'
+  - '#.0S...1#'
+  - '#.......#'
+  - '#######D#'
+  - '#######.#'
+  - '#######.#'
+  - '#######.#'
+  - '#######.#'
+  - '#######G#'
+  - '#########'
+  params:
+    control_width: 7
+    control_height: 4
+    spur_len: 3
+    spur_col: 2
+    goal_len: 5
+    door_col: 7
+    start:
+    - 6
+    - 3
+    switch_0:
+    - 6
+    - 2
+    switch_1:
+    - 6
+    - 7
+    mirror: false
+    geometry_seed: 11
+    attempt: 1
+    generator_version: 1
+  width: 9
+  height: 15
+- name: holdout_12
+  geometry_seed: 12
+  ascii_lines:
+  - '#########'
+  - '####.####'
+  - '####.####'
+  - '####.####'
+  - '####.####'
+  - '#.......#'
+  - '#.1..S..#'
+  - '#.0.....#'
+  - '#D#######'
+  - '#.#######'
+  - '#.#######'
+  - '#.#######'
+  - '#G#######'
+  - '#########'
+  params:
+    control_width: 7
+    control_height: 3
+    spur_len: 4
+    spur_col: 4
+    goal_len: 4
+    door_col: 1
+    start:
+    - 6
+    - 5
+    switch_0:
+    - 7
+    - 2
+    switch_1:
+    - 6
+    - 2
+    mirror: false
+    geometry_seed: 12
+    attempt: 1
+    generator_version: 1
+  width: 9
+  height: 14
+- name: holdout_13
+  geometry_seed: 13
+  ascii_lines:
+  - '########'
+  - '##.#####'
+  - '#..1.0S#'
+  - '#......#'
+  - '#......#'
+  - '######D#'
+  - '######.#'
+  - '######.#'
+  - '######G#'
+  - '########'
+  params:
+    control_width: 6
+    control_height: 3
+    spur_len: 1
+    spur_col: 2
+    goal_len: 3
+    door_col: 6
+    start:
+    - 2
+    - 6
+    switch_0:
+    - 2
+    - 5
+    switch_1:
+    - 2
+    - 3
+    mirror: false
+    geometry_seed: 13
+    attempt: 1
+    generator_version: 1
+  width: 8
+  height: 10
+- name: holdout_14
+  geometry_seed: 14
+  ascii_lines:
+  - '######'
+  - '##.###'
+  - '##.###'
+  - '##.###'
+  - '##.###'
+  - '#.S..#'
+  - '#....#'
+  - '#..1.#'
+  - '#.0..#'
+  - '##D###'
+  - '##.###'
+  - '##.###'
+  - '##G###'
+  - '######'
+  params:
+    control_width: 4
+    control_height: 4
+    spur_len: 4
+    spur_col: 3
+    goal_len: 3
+    door_col: 3
+    start:
+    - 5
+    - 3
+    switch_0:
+    - 8
+    - 3
+    switch_1:
+    - 7
+    - 2
+    mirror: true
+    geometry_seed: 14
+    attempt: 1
+    generator_version: 1
+  width: 6
+  height: 14
+- name: holdout_15
+  geometry_seed: 15
+  ascii_lines:
+  - '#######'
+  - '##1####'
+  - '##.####'
+  - '##0####'
+  - '##.####'
+  - '#S....#'
+  - '#.....#'
+  - '#D#####'
+  - '#.#####'
+  - '#G#####'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 2
+    spur_len: 4
+    spur_col: 2
+    goal_len: 2
+    door_col: 1
+    start:
+    - 5
+    - 1
+    switch_0:
+    - 3
+    - 2
+    switch_1:
+    - 1
+    - 2
+    mirror: false
+    geometry_seed: 15
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 11
+- name: holdout_16
+  geometry_seed: 16
+  ascii_lines:
+  - '########'
+  - '#####.##'
+  - '#####.##'
+  - '#####.##'
+  - '#.....S#'
+  - '#...1..#'
+  - '#....0.#'
+  - '###D####'
+  - '###.####'
+  - '###.####'
+  - '###.####'
+  - '###G####'
+  - '########'
+  params:
+    control_width: 6
+    control_height: 3
+    spur_len: 3
+    spur_col: 2
+    goal_len: 4
+    door_col: 4
+    start:
+    - 4
+    - 1
+    switch_0:
+    - 6
+    - 2
+    switch_1:
+    - 5
+    - 3
+    mirror: true
+    geometry_seed: 16
+    attempt: 1
+    generator_version: 1
+  width: 8
+  height: 13
+- name: holdout_17
+  geometry_seed: 17
+  ascii_lines:
+  - '##########'
+  - '######.###'
+  - '######.###'
+  - '#1...S..0#'
+  - '#........#'
+  - '#........#'
+  - '####D#####'
+  - '####.#####'
+  - '####.#####'
+  - '####.#####'
+  - '####G#####'
+  - '##########'
+  params:
+    control_width: 8
+    control_height: 3
+    spur_len: 2
+    spur_col: 3
+    goal_len: 4
+    door_col: 5
+    start:
+    - 3
+    - 4
+    switch_0:
+    - 3
+    - 1
+    switch_1:
+    - 3
+    - 8
+    mirror: true
+    geometry_seed: 17
+    attempt: 1
+    generator_version: 1
+  width: 10
+  height: 12
+- name: holdout_18
+  geometry_seed: 18
+  ascii_lines:
+  - '#######'
+  - '##S####'
+  - '##.####'
+  - '##.####'
+  - '#..1..#'
+  - '#..0..#'
+  - '####D##'
+  - '####.##'
+  - '####.##'
+  - '####.##'
+  - '####G##'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 2
+    spur_len: 3
+    spur_col: 2
+    goal_len: 4
+    door_col: 4
+    start:
+    - 1
+    - 2
+    switch_0:
+    - 5
+    - 3
+    switch_1:
+    - 4
+    - 3
+    mirror: false
+    geometry_seed: 18
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 12
+- name: holdout_19
+  geometry_seed: 19
+  ascii_lines:
+  - '######'
+  - '#.1..#'
+  - '#....#'
+  - '#..S.#'
+  - '#0...#'
+  - '##D###'
+  - '##.###'
+  - '##.###'
+  - '##G###'
+  - '######'
+  params:
+    control_width: 4
+    control_height: 4
+    spur_len: 0
+    spur_col: 1
+    goal_len: 3
+    door_col: 3
+    start:
+    - 3
+    - 2
+    switch_0:
+    - 4
+    - 4
+    switch_1:
+    - 1
+    - 3
+    mirror: true
+    geometry_seed: 19
+    attempt: 1
+    generator_version: 1
+  width: 6
+  height: 10
+- name: holdout_20
+  geometry_seed: 20
+  ascii_lines:
+  - '#######'
+  - '#.1...#'
+  - '#.S...#'
+  - '#....0#'
+  - '#D#####'
+  - '#.#####'
+  - '#.#####'
+  - '#.#####'
+  - '#G#####'
+  - '#######'
+  params:
+    control_width: 5
+    control_height: 3
+    spur_len: 0
+    spur_col: 1
+    goal_len: 4
+    door_col: 1
+    start:
+    - 2
+    - 2
+    switch_0:
+    - 3
+    - 5
+    switch_1:
+    - 1
+    - 2
+    mirror: false
+    geometry_seed: 20
+    attempt: 1
+    generator_version: 1
+  width: 7
+  height: 10
