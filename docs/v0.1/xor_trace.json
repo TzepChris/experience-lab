@@ -1,0 +1,197 @@
+{
+  "belief_after_episode0": {
+    "evidence": {
+      "0": [
+        false
+      ],
+      "1": [
+        true
+      ]
+    },
+    "hypotheses": {
+      "door0": [
+        "x0",
+        "x0_or_x1",
+        "x0_xor_x1"
+      ]
+    },
+    "hypothesis_count": {
+      "door0": 3
+    }
+  },
+  "checkpoint_id": "probe_spur|x0_xor_x1|perm1,0|seed1|systematic_retained",
+  "episode0_cost": 19,
+  "k10_later_a": 190,
+  "k10_later_b": 88,
+  "k10_later_c": 70,
+  "later_a": [
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [],
+      "decision": null,
+      "extra_probe_actions": 0,
+      "hypotheses_after": null,
+      "intended_target": null,
+      "later_index": 0,
+      "planning_expansions": null,
+      "steps": 19,
+      "success": true,
+      "target_reached": false
+    },
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [],
+      "decision": null,
+      "extra_probe_actions": 0,
+      "hypotheses_after": null,
+      "intended_target": null,
+      "later_index": 1,
+      "planning_expansions": null,
+      "steps": 19,
+      "success": true,
+      "target_reached": false
+    },
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [],
+      "decision": null,
+      "extra_probe_actions": 0,
+      "hypotheses_after": null,
+      "intended_target": null,
+      "later_index": 2,
+      "planning_expansions": null,
+      "steps": 19,
+      "success": true,
+      "target_reached": false
+    }
+  ],
+  "later_b": [
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [
+        2
+      ],
+      "decision": null,
+      "extra_probe_actions": 3,
+      "hypotheses_after": {
+        "door0": [
+          "x0_or_x1",
+          "x0_xor_x1"
+        ]
+      },
+      "intended_target": 2,
+      "later_index": 0,
+      "planning_expansions": null,
+      "steps": 7,
+      "success": true,
+      "target_reached": true
+    },
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [
+        2,
+        3
+      ],
+      "decision": null,
+      "extra_probe_actions": 12,
+      "hypotheses_after": {
+        "door0": [
+          "x0_xor_x1"
+        ]
+      },
+      "intended_target": 3,
+      "later_index": 1,
+      "planning_expansions": null,
+      "steps": 25,
+      "success": true,
+      "target_reached": true
+    },
+    {
+      "L": null,
+      "U": null,
+      "certificate": null,
+      "configs_after_toggles": [],
+      "decision": null,
+      "extra_probe_actions": 0,
+      "hypotheses_after": {
+        "door0": [
+          "x0_xor_x1"
+        ]
+      },
+      "intended_target": null,
+      "later_index": 2,
+      "planning_expansions": null,
+      "steps": 7,
+      "success": true,
+      "target_reached": false
+    }
+  ],
+  "later_c": [
+    {
+      "L": 7,
+      "U": 19,
+      "certificate": "shorter_plan_witness",
+      "configs_after_toggles": [
+        2
+      ],
+      "decision": "optional_probe",
+      "extra_probe_actions": 3,
+      "hypotheses_after": {
+        "door0": [
+          "x0_or_x1",
+          "x0_xor_x1"
+        ]
+      },
+      "intended_target": 2,
+      "later_index": 0,
+      "planning_expansions": 179,
+      "steps": 7,
+      "success": true,
+      "target_reached": true
+    },
+    {
+      "L": 7,
+      "U": 7,
+      "certificate": "certified_no_headroom",
+      "configs_after_toggles": [],
+      "decision": "exploit",
+      "extra_probe_actions": 0,
+      "hypotheses_after": null,
+      "intended_target": null,
+      "later_index": 1,
+      "planning_expansions": 80,
+      "steps": 7,
+      "success": true,
+      "target_reached": false
+    },
+    {
+      "L": 7,
+      "U": 7,
+      "certificate": "certified_no_headroom",
+      "configs_after_toggles": [],
+      "decision": "exploit",
+      "extra_probe_actions": 0,
+      "hypotheses_after": null,
+      "intended_target": null,
+      "later_index": 2,
+      "planning_expansions": 80,
+      "steps": 7,
+      "success": true,
+      "target_reached": false
+    }
+  ],
+  "note": "C probes when a remaining complete hypothesis has a shorter plan than the conservative route, then skips further probes once U equals L.",
+  "oracle_episode0_cost": 7,
+  "starting_condition": "expensive_systematic",
+  "why_c_skips_unnecessary_probe": "After episode 0 cost 19 (oracle 7), remaining hypotheses were ['x0', 'x0_or_x1', 'x0_xor_x1']. C later-0 had U=19 and L=7 (shorter_plan_witness), so it ran the completed-target probe to config 2 and finished in 7 actions. Remaining hypotheses became ['x0_or_x1', 'x0_xor_x1']. C later-1 had U=7 and L=7 (certified_no_headroom), so it exploited with 0 extra-probe actions. B later-1 still probed target 3 (OR-vs-XOR distinguisher) and used 25 actions."
+}

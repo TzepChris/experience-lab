@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from experience_lab.artifact import build_v01_artifact
 from experience_lab.checkpoint_eval import run_checkpoint_benchmark
 from experience_lab.checkpoint_report import write_checkpoint_report
 from experience_lab.evaluation import load_config, render_ansi, run_benchmark
@@ -144,6 +145,38 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_artifact(args: argparse.Namespace) -> int:
+    payload = build_v01_artifact(
+        holdout_dir=Path(args.holdout),
+        development_dir=Path(args.development),
+        output_dir=Path(args.output),
+    )
+    analysis = payload["analysis"]
+    rec = analysis["reconcile"]
+    boot = analysis["bootstrap"]["intervals"]
+    xor_trace = payload["xor_trace"]
+    printable = {
+        "output_dir": payload["output_dir"],
+        "batch_status": analysis["batch_status"],
+        "n_maps": analysis["n_maps"],
+        "n_cells": analysis["n_cells"],
+        "reconcile": rec,
+        "mean_later_c": boot["mean_later_c"],
+        "mean_delta_c_minus_a": boot["mean_delta_c_minus_a"],
+        "xor_checkpoint_id": xor_trace["checkpoint_id"],
+        "xor_k10_later": {
+            "A": xor_trace["k10_later_a"],
+            "B": xor_trace["k10_later_b"],
+            "C": xor_trace["k10_later_c"],
+        },
+        "note": "Tables and figures rebuilt from saved summaries. A/B/C were not rerun.",
+    }
+    print(json.dumps(printable, indent=2, sort_keys=True))
+    print(f"tables: {Path(args.output) / 'tables.md'}")
+    print(f"figures: {Path(args.output) / 'figures'}")
+    return 0 if all(rec.values()) else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="experience-lab")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -164,6 +197,15 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("--input", required=True)
     report.add_argument("--output", default=None)
     report.set_defaults(func=cmd_report)
+
+    artifact = sub.add_parser(
+        "artifact",
+        help="rebuild v0.1 tables and figures from saved summaries",
+    )
+    artifact.add_argument("--holdout", default="results/checkpoint_geometry_holdout")
+    artifact.add_argument("--development", default="results/checkpoint_ul_stopping")
+    artifact.add_argument("--output", default="docs/v0.1")
+    artifact.set_defaults(func=cmd_artifact)
     return parser
 
 

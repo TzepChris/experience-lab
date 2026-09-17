@@ -1,0 +1,42 @@
+{
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 20260918,
+  "development_dependencies": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "pytest": "9.1.1",
+    "python": "3.11.0",
+    "pyyaml": "6.0.3"
+  },
+  "development_git": {
+    "commit": null,
+    "dirty": null
+  },
+  "development_wall_seconds": 4.916133699996863,
+  "figures": [
+    "fig1_map_later_cost.png",
+    "fig2_map_delta_c_minus_a.png",
+    "fig3_paired_cell_outcomes.png"
+  ],
+  "holdout_dependencies": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "pytest": "9.1.1",
+    "python": "3.11.0",
+    "pyyaml": "6.0.3"
+  },
+  "holdout_git": {
+    "commit": "77852692cf7ababb11dc8a33793fcb8eee93da34",
+    "dirty": false
+  },
+  "holdout_hardware": {
+    "machine": "AMD64",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "python": "3.11.0"
+  },
+  "holdout_wall_seconds": 13.613453099998878,
+  "lockfile": "requirements.lock.txt",
+  "note": "A/B/C were not modified to produce this package.",
+  "package_version": "0.1.0"
+}

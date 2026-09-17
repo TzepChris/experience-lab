@@ -1,8 +1,14 @@
-# Experience Lab
+# Experience Lab v0.1
 
-A CPU-only Python lab where a symbolic agent learns which Boolean switch-to-door rule is active by acting, observing, and planning. It does not train a neural network, call an LLM, or download datasets.
+A local CPU-only symbolic SwitchWorld study of a **hand-designed** later-episode stopping rule. The learner does not train a neural network, call an LLM, or download datasets.
 
-Central question (not answered by Milestone A): under a fixed interaction budget, does choosing informative experiments help more than systematic search? Milestone A only checks that learning, planning, and the information boundary work on one tiny map.
+This package is a controlled comparison of three frozen checkpoint policies (A, B, C) on a development matrix and a 20-map geometry holdout. It is **not** a claim that C is novel or generally superior.
+
+Full write-up: [`docs/v0.1/EXPERIMENTAL_REPORT.md`](docs/v0.1/EXPERIMENTAL_REPORT.md). Generated tables and figures: [`docs/v0.1/`](docs/v0.1/).
+
+## Question
+
+After a shared public episode-0 checkpoint, does a U vs L gate (method C) reduce later action cost relative to always exploiting (A) and always completing one information-per-action probe (B)?
 
 ## Setup (Windows PowerShell)
 
@@ -13,21 +19,31 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
 ```
 
-Installed versions used for a run are recorded in `requirements.lock.txt` and in each run manifest.
+Installed versions used for the measured batches are in `requirements.lock.txt` and each run `manifest.json`. Package version: `0.1.0`.
 
-## Commands
+## Reproduction
+
+Rebuild tables, bootstrap intervals, and figures from **saved** summaries. This does not rerun A/B/C and must not be used to retune them.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m experience_lab.cli demo --config configs/smoke.yaml --seed 1
-.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/pilot.yaml --max-wall-seconds 120
-.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/probe_choice.yaml --max-wall-seconds 120
-.\.venv\Scripts\python.exe -m experience_lab.cli report --input results/probe_choice
-.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/reprobe_closed_door.yaml --max-wall-seconds 120
-.\.venv\Scripts\python.exe -m experience_lab.cli report --input results/reprobe_closed_door
-.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/checkpoint_complete_probe.yaml --max-wall-seconds 120
-.\.venv\Scripts\python.exe -m experience_lab.cli report --input results/checkpoint_complete_probe
+.\.venv\Scripts\python.exe -m experience_lab.cli artifact --holdout results/checkpoint_geometry_holdout --development results/checkpoint_ul_stopping --output docs/v0.1
 ```
+
+Optional: regenerate the raw batches under the 120-second cap (do not change A/B/C afterward, and do not tune against the holdout).
+
+```powershell
+.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/checkpoint_ul_stopping.yaml --max-wall-seconds 120
+.\.venv\Scripts\python.exe -m experience_lab.cli benchmark --config configs/checkpoint_geometry_holdout.yaml --max-wall-seconds 120
+```
+
+Holdout maps, methods, and certificates were frozen at git `77852692cf7ababb11dc8a33793fcb8eee93da34` before rankings. The development batch predates `git init` (`commit: null` in its manifest).
+
+## Measured holdout (k=10 later actions)
+
+20 maps × 20 paired cells = 400/400 complete pairs in 13.61s. Success 1.0 for A, B, and C.
+
+Mean of map means: A 132.53, B 129.68, C 126.30. Paired bootstrap 95% CI for C−A: −7.71 to −4.69. Map-level C vs A is 20–0–0; paired cells are 91 helps / 246 ties / 63 wastes.
 
 ## Public loop
 
@@ -39,30 +55,8 @@ public observation -> hypothesis filter -> conservative task plan
       action -----------------> environment -> new observation
 ```
 
-The learner never receives hidden rules, seeds, oracle paths, or the environment object.
+The learner never receives hidden rules, seeds, oracle paths, bucket labels, or the environment object.
 
-## Milestone A scope
+## What this is not
 
-Implemented: one 7x7 two-switch one-door world, exact hypothesis filtering, conservative BFS, control-area probes, active information-per-action selection, systematic baseline, oracle evaluator, tests, demo, and a 120-second-capped pilot.
-
-A later diagnostic added a frozen spur/mirror pair, switch-ID permutation, and the random-informative baseline. A separate frozen comparison then tests optional re-probing after a conservative plan already exists. Transfer, changing rules, and a dashboard are still out of scope.
-
-## Real demo (executed)
-
-On the tiny AND world, seed 1, the active learner started with 5 remaining tables after seeing `00 -> closed`, probed the nearer switch, observed `10 -> closed`, reduced the set to `{x0_and_x1, x1}`, then followed a conservative plan that opened the door and reached the goal in 14 steps. Exact recovery of AND was not required for that success.
-
-## Pilot (executed)
-
-36/36 runs completed in 0.43s on local CPU (120s cap). All methods, including the oracle, used 14 steps on AND and 9 on XOR/`x0`. Active matched systematic. Retained memory did not reduce action cost on this map. Details: `docs/results.md`.
-
-## Probe-choice diagnostic (executed)
-
-Frozen matrix: 3 layouts × 3 rules × 2 ID permutations × 3 seeds × 7 methods = 378 runs, all completed in 4.90s. Selection changes cost when the cheap informative probe is not the first canonical config and is not on the oracle path. Active saved 12 actions vs systematic on spur XOR with swapped IDs, and lost 4 on spur AND with the same IDs. Details: `docs/results_probe_choice.md`. Do not read the pooled mean as a general win.
-
-## Re-probe comparison (executed)
-
-Frozen five-rule matrix: 3 layouts × 5 initially closed rules × 2 ID permutations × 3 seeds × 3 methods = 270 runs, all completed in 15.74s of a 120s cap. Episode 0 matched exploit-immediately. Optional later-episode probes never beat that baseline on cumulative cost: they were free on AND/`x1` (on-path) and wasted on `x0`/OR/XOR. The episode-1 premium was not recovered by episode 10. Success was 1.0 for both methods on every prefix. Details: `docs/results_reprobe.md`.
-
-## Checkpoint complete-probe (executed)
-
-180/180 pairs completed in 3.16s of a 120s cap. Forks started from real systematic and active episode-0 beliefs. Completing the selected target **recovered** from expensive systematic knowledge after ID swap (spur XOR later-10: A 190 vs B 88). From already-cheap active states the same completed probes **added** cost (spur XOR later-10: +30). AND/`x1` stayed equal. Success 1.0 on every prefix. Details: `docs/results_checkpoint_complete_probe.md`.
+No transfer study, changing-rule study, dashboard, or remote publication. Earlier diagnostics (probe choice, first-TOGGLE re-probe, A vs B complete-target) remain development history in `docs/`.
